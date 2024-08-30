@@ -80,4 +80,16 @@ const login = async (req, res) => {
   }
 };
 
-export { signup, login };
+const getUserProfile = async (req, res) => {
+  try {
+    const user = req.user;
+
+    if (!user) {
+      res.status(403).json({ message: "User Not Found" });
+    }
+    res.status(200).json({ message: "Current User fetch successfully.", user });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export { signup, login, getUserProfile };
